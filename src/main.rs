@@ -8,9 +8,8 @@ fn main() {
     let port_name           = "/dev/ttyUSB0";
     let test_data: [u8;511] = array::from_fn(|i| (i%256) as u8);
 
-
     let builder = serialport::new(port_name, 250_000)
-        .stop_bits(StopBits::One)
+        .stop_bits(StopBits::Two)
         .data_bits(DataBits::Eight);
 
     let mut port = builder.open().unwrap_or_else(|e| {
@@ -19,7 +18,7 @@ fn main() {
 
     println!("Test data: {:?}", test_data);
 
-    loop {
+    //loop {
         port.set_break().unwrap();
         port.clear_break().unwrap();
         match port.write(&test_data) {
@@ -30,7 +29,7 @@ fn main() {
 
             Err(e) => eprintln!("{:?}", e),
         }
-    }
+    //}
 
     //port.set_break().unwrap();
     //port.clear_break().unwrap();
