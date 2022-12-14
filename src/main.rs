@@ -8,13 +8,11 @@ fn main() {
     let port_name           = "/dev/ttyUSB0";
     let test_data: [u8;511] = array::from_fn(|i| (i%256) as u8);
 
-    let test_port = dmx::from_path(port_name).unwrap_or_else(|e| {
+    let mut test_port = dmx::from_path(port_name).unwrap_or_else(|e| {
         panic!("Failed to open serial port: {:?}", e);
     });
 
-    loop {
-        test_port.send_frame(&test_data).unwrap();
-    }
+    test_port.send_frame(&test_data).unwrap();
 
     //loop {
         //port.set_break().unwrap();

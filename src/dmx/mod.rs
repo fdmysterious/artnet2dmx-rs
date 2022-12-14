@@ -58,7 +58,9 @@ impl<T: serial::SerialPort> SerialDmxTransmitter<T> {
             port
         }
     }
+}
 
+impl<T: serial::SerialPort> DmxTransmitter for SerialDmxTransmitter<T> {
     fn do_break(&self) -> Result<()> {
         self.port.set_break()?;
         self.port.clear_break()?;
