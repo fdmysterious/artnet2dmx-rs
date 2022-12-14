@@ -1,5 +1,5 @@
 [package]
-name = "arnet2dmx-rs"
+name = "artnet2dmx-rs"
 version = "0.1.0"
 edition = "2021"
 
